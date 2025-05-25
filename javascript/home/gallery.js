@@ -45,6 +45,11 @@ export async function loadGallery(users, onlyMine = false) {
                     <img class='materialboxed' src='${URI}/static/uploads/${img.filename}' />
                 </div>
                 <div class='card-content'>
+                    <div class='like-section'>
+                        <a class='btn-floating halfway-fab waves-effect waves-light grey 
+                            like-btn data-imageid='${img.id}'>
+                            <i class='material-icons'>favorite_border</i>
+                        </a>
                     <span class='card-title'>Subido por: <strong>${uploaderName}</strong></span>
                     ${commentsHtml || '<p>Sin comentarios aun</p>'}
                     
@@ -75,6 +80,21 @@ export async function loadGallery(users, onlyMine = false) {
             fetchComments(imageId, userId, text).then(console.log);
         });
     });
+
+    container.querySelectorAll('.like-section a').forEach(btn =>{
+        btn.addEventListener('click',()=>{
+            const imageId = btn.getAttribute('data-imageid');
+            const icon = btn.querySelector('i');
+
+            if (icon.textContent == 'favorite_border'){
+                icon.textContent = 'favorite';
+                icon.classList.add('Liked');
+            } else {
+                icon.textContent = 'favorite_border';
+                icon.classList.remove('liked');
+            }
+        })
+    })
 
     loader.style.display = 'none';
 }

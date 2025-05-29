@@ -16,8 +16,10 @@ class LoginForm extends HTMLElement {
                                 <input type="password" id="password" autocomplete="off">
                                 <label for="password">Contraseña</label>
                             </div>
-                            <button id="btnLogin"
-                                class="btn waves-effect waves-light">Entrar</button>
+                            <button id="btnLogin" class="btn waves-effect waves-light">Entrar</button>
+
+                            <div class="center-align" style="margin-top: 15px;">
+                            <p>¿No tienes cuenta? <a href="register.html" class="grey-text">Regístrate aquí</a></p>
                         </div>
                     </div>
                 </div>

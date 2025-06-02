@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const username = document.getElementById("reg-username").value.trim();
         const password = document.getElementById("reg-password").value;
         const profilePhoto = document.getElementById("profile-photo").files[0];
-        const loader = document.getElementById("login-loader");
+        const loader = document.getElementById("register-loader");
         
         // Convertir imagen a base64
         const reader = new FileReader();

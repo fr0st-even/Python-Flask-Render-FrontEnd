@@ -4,7 +4,7 @@ class RegisterLoader extends HTMLElement {
         super();
         // this es como el self de python
         this.innerHTML = /*html*/`
-            <div id="login-loader" class="center-align" style="margin-top: 20px;">
+            <div id="register-loader" class="center-align" style="margin-top: 20px;">
                 <div class="preloader-wrapper big active">
                     <div class="spinner-layer spinner-blue-only">
                         <div class="circle-clipper left">

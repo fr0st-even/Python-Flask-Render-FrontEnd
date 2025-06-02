@@ -18,7 +18,7 @@ class LoginLoader extends HTMLElement {
                         </div>
                     </div>
                 </div>
-                <p>Iniciando sesión, por favor espere</p>
+                <p>Por favor espere</p>
             </div>
         `;
     }

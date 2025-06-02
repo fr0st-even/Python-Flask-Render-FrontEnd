@@ -81,14 +81,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const username = document.getElementById("reg-username").value.trim();
         const password = document.getElementById("reg-password").value;
         const profilePhoto = document.getElementById("profile-photo").files[0];
-        const loader = document.getElementById("register-loader");
+        const loader_register = document.getElementById("register-loader");
         
         // Convertir imagen a base64
         const reader = new FileReader();
         reader.onload = async () => {
             const base64Image = reader.result.split(',')[1]; // Remover el prefijo data:image/...;base64,
             
-            loader.style.display = 'block'; // Muestra el loader
+            loader_register.style.display = 'block'; // Muestra el loader
 
             try {
                 console.log(`Enviando registro a: ${URI}/api/register`);
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const data = await response.json();
                 console.log('Response data:', data);
                 
-                loader.style.display = 'none'; // Oculta el loader
+                loader_register.style.display = 'none'; // Oculta el loader
 
                 if (data.success) {
                     M.toast({
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
             } catch (error) {
-                loader.style.display = 'none'; // Oculta el loader
+                loader_register.style.display = 'none'; // Oculta el loader
                 console.error('Error:', error);
                 
                 let errorMessage = 'Error de conexión';

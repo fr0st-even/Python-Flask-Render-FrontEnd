@@ -52,7 +52,7 @@ class UserProfile extends HTMLElement {
             }
 
             // Cargar información del usuario
-            const userResponse = await fetch(`http://localhost:5000/api/users`);
+            const userResponse = await fetch(`https://python-flask-render-qzsv.onrender.com/api/users`);
             const users = await userResponse.json();
             const user = users.find(u => u.id == profileUserId);
 
@@ -62,7 +62,7 @@ class UserProfile extends HTMLElement {
             }
 
             // Cargar imágenes del usuario
-            const imagesResponse = await fetch(`http://localhost:5000/api/images`);
+            const imagesResponse = await fetch(`https://python-flask-render-qzsv.onrender.com/api/images`);
             const allImages = await imagesResponse.json();
             const userImages = allImages.filter(img => img.user_id == profileUserId);
 

@@ -1,50 +1,49 @@
-let btnLogin = document.getElementById("btnLogin");
-// console.log(btnLogin);
+import { loadGallery } from "./gallery.js";
+import { fetchUsers } from "./services/api.js";
+import { updateNavbarActive } from "./services/utils.js";
+import { initUploader } from "./uploader.js";
 
-btnLogin.addEventListener("click", () => {
-    let varUsername = document.getElementById("username").value;
-    let varPassword = document.getElementById("password").value;
-    const loader = document.getElementById("login-loader");
-    
-    loader.style.display = 'block'; // Muestra el loader
+document.addEventListener("DOMContentLoaded", () => {
+    let viewMyGallery = false;
 
-    setTimeout(() => {
-        // Unión entre python y javascript
-        fetch('http://127.0.0.1:5000/api/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                username: varUsername,
-                password: varPassword
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            loader.style.display = 'none'; // Oculta el loader
+    const userId = parseInt(localStorage.getItem('user_id'));
+    if (!userId)
+        return window.location.href = './login.html';
 
-            console.log(data);
-            if (data.user_id) {
-                // Guarda como clave y valor en el localstorage
-                localStorage.setItem('user_id', data.user_id);
-                M.toast({
-                    html: data.mensaje,
-                    classes: 'green'
-                });
-                location.href = 'index.html';
-            } else {
-                M.toast({
-                    html: data.error,
-                    classes: 'red'
-                });
+    function loadData(onlyMine = false) {
+        fetchUsers()
+        .then(users => {
+            console.log(users);
+            
+            // Obtenemos el elemento html que vamos a rellenar
+            const greeting = document.getElementById("user-greeting");
+            // De todos los usuarios encontramos al que sea el propio
+            const user = users.find(u => u.id === userId);
+
+            // Si el usuario es el que se logeó entonces que nos de nuestro nombre 
+            if (onlyMine && user && greeting) {
+                greeting.textContent = `Fotos de ${user.username}`;
+            } else if (greeting) {
+                greeting.textContent = `Galería General`;
             }
-        })
-        .catch(err => {
-            loader.style.display = 'none'; // Oculta el loader
-
-            M.toast({
-                html: "Error de conexión",
-                classes: 'red'
-            });
+            loadGallery(users, onlyMine);
         });
-    }, 2000);
+    };
+
+    // Para ver la galería de los demás
+    document.getElementById("btn-general").addEventListener("click", () => {
+        viewMyGallery = false;
+        loadData(viewMyGallery);
+        updateNavbarActive('li-general');
+    });
+
+    document.getElementById("btn-misfotos").addEventListener("click", () => {
+        viewMyGallery = true;
+        loadData(viewMyGallery);
+        updateNavbarActive('li-misfotos');
+    });
+
+    initUploader();
+    loadData(false);
+    updateNavbarActive('li-general');
 });

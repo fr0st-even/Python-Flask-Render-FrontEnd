@@ -2,13 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario</title>
+    <link rel="icon" href="MP-_1_.ico" type="image/icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="materialize/css/materialize.min.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
-<body style="background: linear-gradient(to bottom, #F5F5DC, #FFFFFF); min-height: 100vh;">
+<body class="grey lighten-4">
     <my-navbar></my-navbar>
     <user-profile></user-profile>
     <my-footer></my-footer>
+    
+    <script type="module" src="components/navbar.js"></script>
     <script type="module" src="components/user-profile.js"></script>
+    <script type="module" src="components/footer.js"></script>
+    <script src="materialize/js/materialize.min.js"></script>
+    <script src="javascript/auth/logout.js"></script>
 </body>
 </html>

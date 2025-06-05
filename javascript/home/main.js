@@ -43,6 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
         updateNavbarActive('li-misfotos');
     });
 
+    
+    // Event listener para cerrar sesión (opcional)
+    document.getElementById("btn-logout").addEventListener("click", () => {
+        localStorage.removeItem('user_id');
+        window.location.href = './login.html';
+    });
+
     initUploader();
     loadData(false);
     updateNavbarActive('li-general');

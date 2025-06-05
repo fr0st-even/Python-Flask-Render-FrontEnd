@@ -5,7 +5,7 @@ class Navbar extends HTMLElement {
         this.innerHTML = /*html*/`
         <nav style="background-color: #F5F5DC;">
             <div class="nav-wrapper container">
-                <a href="#" class="grey-text text-lighten-15 brand-logo">MyPinterest</a>
+                <a href="profile.html" class="grey-text text-lighten-15 brand-logo" style="font-family: Arial"><i class="material-icons large">account_circle</i>MyPinterest</a>
                 <ul class="right">
                     <li id="li-general"><a id="btn-general" style="color: grey;">Galería general</a></li>
                     <li id="li-misfotos"><a id="btn-misfotos" style="color: grey;">Mi galería</a></li>
